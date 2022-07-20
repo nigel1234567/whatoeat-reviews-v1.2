@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  place_name: MyString
+  tags: MyString
+  place_location,: MyString
+  datetime: 2022-07-20 11:06:06
+
+two:
+  place_name: MyString
+  tags: MyString
+  place_location,: MyString
+  datetime: 2022-07-20 11:06:06
