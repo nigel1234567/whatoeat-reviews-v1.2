@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'visits#index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # Namespace routes
+  namespace :api do
+    namespace :v1 do
+      resources :places, param: :slug
+      resources :visits
+    end
+  end
+
+  # Handles Routing to React components without interfering with Rails Routes for our api
+  get '*path', to: 'visits#index', via: :all
+
 end
