@@ -1,7 +1,8 @@
 module Api
   module V1
     class VisitsController < ApplicationController
-      
+      protect_from_forgery with: :null_session
+
       def create
         visit = Visit.new(visit_params)
 
@@ -15,10 +16,10 @@ module Api
 
       def destroy
         # Find existing visit by id
-        visit = Visit.find_by(params[:id])
+        visit = Visit.find(params[:id])
 
         # If able to destroy, no content
-        if review.destroy
+        if visit.destroy
           head :no_content
         else # Else render error
           render json: {error: place.errors.messages}, status: 422

@@ -1,6 +1,7 @@
 module Api
   module V1
     class PlacesController < ApplicationController
+      protect_from_forgery with: :null_session
       def index
         places = Place.all
 
@@ -32,7 +33,7 @@ module Api
         place = Place.find_by(slug: params[:slug])
 
         # If able to update, save as json
-        if place.update
+        if place.update(place_params)
           render json: PlaceSerializer.new(place, options).serialized_json
         else # Else render error
           render json: {error: place.errors.messages}, status: 422
