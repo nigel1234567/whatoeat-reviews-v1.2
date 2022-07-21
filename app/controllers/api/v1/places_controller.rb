@@ -5,7 +5,7 @@ module Api
         places = Place.all
 
         # Pass as json to api
-        render PlaceSerializer.new(places, options).serialized_json
+        render json: PlaceSerializer.new(places, options).serialized_json
       end
 
       def show
@@ -13,7 +13,7 @@ module Api
         place = Place.find_by(slug: params[:slug])
 
         # Pass as json to api
-        render PlaceSerializer.new(place, options).serialized_json
+        render json: PlaceSerializer.new(place, options).serialized_json
       end
 
       def create
@@ -43,7 +43,7 @@ module Api
         # Find existing place by slug
         place = Place.find_by(slug: params[:slug])
 
-        # If able to destroy, save as json
+        # If able to destroy, no content
         if place.destroy
           head :no_content
         else # Else render error
