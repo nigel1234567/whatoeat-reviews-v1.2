@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'visits#index'
+  root 'pages#index'
 
   # Namespace routes
   namespace :api do
@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
 
   # Handles Routing to React components without interfering with Rails Routes for our api
-  get '*path', to: 'visits#index', via: :all
+  get '*path', to: 'pages#index', via: :all
 
 end
