@@ -72,5 +72,6 @@ group :test do
 end
 
 gem 'fast_jsonapi'
-
 gem 'devise'
+gem 'react-rails'
+gem 'webpacker'

@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WhatoeatReviewsV12</title>
+    <title>Whatoeat</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", media: 'all' %>
   </head>
 
   <body>
-  <%= if flash[:notice] %>
+  <% if flash[:notice] %>
     <div class="notification primary">
       <p class="notice"><%= notice %></p>
     </div>
   <% end %>
 
-    <%= if flash[:alert] %>
+  <% if flash[:alert] %>
     <div class="notification danger">
       <p class="alert"><%= alert %></p>
     </div>
