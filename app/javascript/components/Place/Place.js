@@ -8,8 +8,8 @@ const Place = (props) => {
       </div>
       <div className='place-name'>{props.attributes.name}</div>
       <div className='place-location'>{props.attributes.location}</div>
-      <div className='place-tags'>{props.attributes.tags}</div>
-      <div className='place-visits'>{props.attributes.total_visits}</div>
+      <div className='place-tags'>Tags: {props.attributes.tags}</div>
+      <div className='place-visits'>Visits: {props.attributes.total_visits}</div>
       <div className='place-visitors'></div>
     </div>
   )
