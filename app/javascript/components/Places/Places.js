@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Place from '../Place/Place'
 
 const Places = () => {
   const [places, setPlaces] = useState([])
@@ -16,16 +17,20 @@ const Places = () => {
     .catch( resp => console.log(resp))
   }, [places.length]) // Only call from api when number of places (length) changes
 
-  const list = places.map( item => {
-    return (<li key={item.attributes.name}>{item.attributes.name}</li>)
+  const grid = places.map( item => {
+    return (
+      <Place
+        key={item.attributes.name}
+        attributes={item.attributes}
+        />
+    )
   })
 
   return (
-  <div>
-    <h2>Places</h2>
-    <div>This is the Places#index view for our app.</div>
-    <div>
-      <ul>{list}</ul>
+  <div className='home'>
+    <h2 className='header'>Places</h2>
+    <div className='grid'>
+      {grid}
     </div>
   </div>
   )

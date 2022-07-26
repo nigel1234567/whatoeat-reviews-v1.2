@@ -8,4 +8,8 @@ class Place < ApplicationRecord
   def slugify
     self.slug = name.parameterize
   end
+
+  def total_visits
+    visits.count
+  end
 end
