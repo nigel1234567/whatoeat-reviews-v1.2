@@ -2,6 +2,7 @@ module Api
   module V1
     class VisitsController < ApplicationController
       protect_from_forgery with: :null_session
+      # before_action :authenticate_user!
 
       def create
         def find_place(name)
@@ -16,8 +17,8 @@ module Api
         # Create Place Id
         place_id = find_place(name: visit_params[:place_name]).id
 
-        visit = Visit.new(place_id: place_id, place_name: visit_params[:place_name], place_location: visit_params[:place_location],
-                          tags: visit_params[:tags], datetime: visit_params[:datetime])
+        visit = current_user.visits.build(place_id: place_id, place_name: visit_params[:place_name], place_location: visit_params[:place_location],
+                          tags: visit_params[:tags], datetime: visit_params[:datetime], user_id: visit_params[:user_id])
 
         # If able to save and everything is valid, save as json
         if visit.save
@@ -42,7 +43,7 @@ module Api
       private
 
       def visit_params
-        params.require(:visit).permit(:place_name, :place_location, :tags, :datetime)
+        params.require(:visit).permit(:place_name, :place_location, :tags, :datetime, :user_id)
       end
     end
   end

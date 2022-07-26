@@ -2,6 +2,7 @@ module Api
   module V1
     class PlacesController < ApplicationController
       protect_from_forgery with: :null_session
+
       def index
         places = Place.all
 

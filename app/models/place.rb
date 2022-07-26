@@ -1,5 +1,6 @@
 class Place < ApplicationRecord
   has_many :visits
+  has_many :users, through: :visits
 
   before_create :slugify
 
@@ -11,5 +12,9 @@ class Place < ApplicationRecord
 
   def total_visits
     visits.count
+  end
+
+  def visitors
+    self.users.uniq.count
   end
 end
