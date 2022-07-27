@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Place from '../Place/Place'
+import Place from './Place'
+import './Places.css'
 
 const Places = () => {
   const [places, setPlaces] = useState([])

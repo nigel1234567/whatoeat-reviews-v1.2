@@ -1,19 +1,20 @@
-import React from 'react'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Place = (props) => {
-  return (
-    <div className='card'>
-      <div className='place-logo'>
-        <img src={props.attributes.image_url} alt={props.attributes.name}/>
-      </div>
-      <div className='place-name'>{props.attributes.name}</div>
-      <div className='place-location'>{props.attributes.location}</div>
-      <div className='place-tags'>Tags: {props.attributes.tags}</div>
-      <div className='place-visits'>Visits: {props.attributes.total_visits}</div>
-      <div className='place-visitors'></div>
-    </div>
-  )
+  const [place, setPlace] = useState({})
+  const [visit, setVisit] = useState({})
+
+  useEffect(() => {
+    const slug = props.match.params.slug
+    const url = `/api/v1/airlines/${slug}`
+
+    axios.get(url)
+    .then( resp => console.log(resp) )
+    .catch( resp => console.log(resp) )
+  }, [])
+
+  return <div>This is the Places#show view for our app.</div>
 }
 
 export default Place
