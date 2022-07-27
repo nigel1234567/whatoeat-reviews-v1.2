@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const Place = (props) => {
   const [place, setPlace] = useState({})
   const [visit, setVisit] = useState({})
+  const {slug} = useParams()
 
   useEffect(() => {
-    const slug = props.match.params.slug
-    const url = `/api/v1/airlines/${slug}`
+    // Construct url for api endpoint 
+    const url = `/api/v1/places/${slug}`
 
+    // Get data from api
     axios.get(url)
-    .then( resp => console.log(resp) )
+    .then( resp => {
+      // Set data
+      setPlace(resp.data) 
+      console.log(resp.data)
+    })
     .catch( resp => console.log(resp) )
   }, [])
 

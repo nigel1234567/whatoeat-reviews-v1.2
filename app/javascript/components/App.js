@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Places from './Places/Places'
-import Place from './Places/Place'
+import Place from './Place/Place'
 
 const App = () => {
   return (
