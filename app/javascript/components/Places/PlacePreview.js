@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
-import './Place.css'
+import './PlacePreview.css'
 
-const Place = (props) => {
+const PlacePreview = (props) => {
   return (
     <div className='card'>
       <div className='logo'>
@@ -18,4 +18,4 @@ const Place = (props) => {
   )
 }
 
-export default Place
+export default PlacePreview

@@ -1,0 +1,16 @@
+.place {
+  padding-left: 8px;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+}
+
+.details {
+  border: 3px solid darkorange;
+  padding: 12px;
+  border-radius: 16px;
+}

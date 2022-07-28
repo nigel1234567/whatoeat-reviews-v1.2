@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Place from './Place'
+import PlacePreview from './PlacePreview'
 import './Places.css'
 
 const Places = () => {
@@ -20,7 +20,7 @@ const Places = () => {
 
   const grid = places.map( item => {
     return (
-      <Place
+      <PlacePreview
         key={item.attributes.name}
         attributes={item.attributes}
         />
