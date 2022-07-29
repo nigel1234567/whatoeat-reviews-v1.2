@@ -4,12 +4,24 @@ const VisitForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>Visited {props.attributes.name} before? Create a visit and share your thoughts!</div>
+      
       <div className='field'>
-        Date: <input onChange={props.handleChange} value={props.visit.date} type='date' name='date'/>
+        Place Name: <input onChange={props.handleChange} value={props.visit.name} type='text' name='place_name'/>
       </div>
+
       <div className='field'>
-        Time: <input onChange={props.handleChange} value={props.visit.time} type='time' name='time'/>
+        Place Location: <input onChange={props.handleChange} value={props.visit.location} type='text' name='place_location'/>
       </div>
+
+      <div className='field'>
+        Tags: <input onChange={props.handleChange} value={props.visit.tags} type='text' name='tags' placeholder='Separate tags by a comma'/>
+      </div>
+
+      <div className='field'>
+        Date & Time: <input onChange={props.handleChange} value={props.visit.date} type='datetime-local' name='datetime'/>
+      </div>
+
+
       <button type='submit'>Create Visit</button>
     </form>
   )

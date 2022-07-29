@@ -38,6 +38,20 @@ const Place = (props) => {
   // Handle submit for form
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    // CSRF Token
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
+    const place_id = place.data.id
+    // Make post request to api
+    axios.post('/api/v1/visits', {visit, place_id})
+    .then(resp => {
+      const included = [...place.included, resp.data.data]
+      setPlace({...place, included}) // Post form details to visit
+      setVisit({tags: '', datetime: ''}) // Set to be empty after posting
+    })
+    .catch(resp => {})
   }
 
   return (
