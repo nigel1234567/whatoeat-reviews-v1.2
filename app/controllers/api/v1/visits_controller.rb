@@ -4,6 +4,13 @@ module Api
       protect_from_forgery with: :null_session
       before_action :authenticate_user!
 
+      def index
+        visits = current_user.visits
+
+        # Pass as json to api
+        render json: VisitSerializer.new(visits).serialized_json
+      end
+
       def create
         def find_place(name)
           Place.find_by(name)
@@ -50,6 +57,11 @@ module Api
       def visit_params
         params.require(:visit).permit(:place_name, :place_location, :tags, :datetime, :user_id)
       end
+
+      def options
+
+      end
+
     end
   end
 end

@@ -18,6 +18,13 @@ const NavBar = () => {
       >
       Places
       </NavLink>
+
+      <NavLink
+      to="/visits"
+      className='navbar-item'
+      >
+      Visits
+      </NavLink>
       </div>
     </nav>
   )
