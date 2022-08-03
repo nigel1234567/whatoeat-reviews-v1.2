@@ -10,45 +10,48 @@
   </head>
 
   <body>
-    <nav class='navbar'>
+    <nav class='navbar-main'>
 
-      <%# Alerts %>
-      <% if flash[:notice] %>
-        <div class="notification primary">
-          <p class="notice"><%= notice %></p>
-        </div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="notification danger">
-          <p class="alert"><%= alert %></p>
-        </div>
-      <% end %>
-
-    <%# Navbar item %>
-      <p class="navbar-brand">
-        <%= link_to root_path, class: "navbar-title" do %>
-          WhatoEat
+      <div class="devise-messages">
+        <%# Alerts %>
+        <% if flash[:notice] %>
+          <div class="notification primary">
+            <p class="notice"><%= notice %></p>
+          </div>
         <% end %>
-      </p>
-
-    <%# User account item %>
-      <div class="account-items">
-        <% if user_signed_in? %>
-          <p class="control">
-            <%= link_to current_user.email, edit_user_registration_path, class: "navbar-item account" %>
-          </p>
-          <p>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"navbar-item account" %>
-          </p>
-        <% else %>
-          <p class="control">
-            <%= link_to 'Login', new_user_session_path, class: "navbar-item account" %>
-          </p>
-          <p class="control">
-            <%= link_to 'Sign Up', new_user_registration_path, class: "navbar-item account" %>
-          </p>
+        <% if flash[:alert] %>
+          <div class="notification danger">
+            <p class="alert"><%= alert %></p>
+          </div>
         <% end %>
       </div>
+
+    <div class="navbar">
+      <%# Navbar item %>
+        <p class="navbar-brand">
+          <%= link_to root_path, class: "navbar-title" do %>
+            WhatoEat
+          <% end %>
+        </p>
+      <%# User account item %>
+        <div class="account-items">
+          <% if user_signed_in? %>
+            <p class="control">
+              <%= link_to current_user.email, edit_user_registration_path, class: "navbar-item account" %>
+            </p>
+            <p>
+              <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class:"navbar-item account" %>
+            </p>
+          <% else %>
+            <p class="control">
+              <%= link_to 'Login', new_user_session_path, class: "navbar-item account" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Sign Up', new_user_registration_path, class: "navbar-item account" %>
+            </p>
+          <% end %>
+        </div>
+    </div>
 
     </nav>
 

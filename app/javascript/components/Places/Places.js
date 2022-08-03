@@ -28,7 +28,7 @@ const Places = () => {
   })
 
   return (
-  <div className='home'>
+  <div className='main'>
     <h2 className='header'>Places</h2>
     <div className='grid'>
       {grid}

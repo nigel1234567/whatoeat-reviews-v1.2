@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import VisitPreview from './VisitPreview'
+import './Visits.css'
 
 const Visits = () => {
   const [visits, setVisits] = useState([])
@@ -27,10 +28,19 @@ const Visits = () => {
   })
 
   return (
-  <div className='home'>
+  <div className='main'>
     <h2 className='header'>Visits</h2>
-    <div className='grid'>
-      {grid}
+    <div className='visits-columns'>
+      <div className='review-column'>
+        <h3>To Review</h3>
+        {grid}
+      </div>
+      <div className='review-window'>
+        To add Review Window here
+      </div>
+      <div className='review-column'>
+      <h3>Reviewed</h3>
+      </div>
     </div>
   </div>
   )
