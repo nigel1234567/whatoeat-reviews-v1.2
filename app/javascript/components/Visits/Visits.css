@@ -2,12 +2,23 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
+  height: 65vh;
 }
 
 .review-column {
   border: 3px solid black;
+  height: inherit;
+  width: inherit;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: scroll;
 }
 
 .review-window {
   border: 3px solid black;
+  height: inherit;
+  width: inherit;
+  padding: 32px;
 }
