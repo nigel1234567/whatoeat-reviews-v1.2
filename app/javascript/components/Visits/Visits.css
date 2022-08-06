@@ -5,9 +5,14 @@
   height: 65vh;
 }
 
+.visit-column {
+  height: inherit;
+  width: inherit;
+}
+
 .review-column {
   border: 3px solid black;
-  height: inherit;
+  height: 95%;
   width: inherit;
   padding: 32px;
   display: flex;

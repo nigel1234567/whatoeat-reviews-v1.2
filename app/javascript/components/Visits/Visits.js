@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import VisitPreview from './VisitPreview'
+import VisitWindow from './VisitWindow'
+import { VisitContext } from './VisitContext'
 import './Visits.css'
 
 const Visits = () => {
   const [visits, setVisits] = useState([])
+  const [currentVisit, setCurrentVisit] = useState([])
+  const [currentVisitName, setCurrentVisitName] = useState('Please select a visit!')
 
   useEffect(() => {
     // Get all our places from api
@@ -21,26 +25,45 @@ const Visits = () => {
   const grid = visits.map( item => {
     return (
       <VisitPreview
-        key={item.attributes.name}
+        key={item.attributes.id}
         attributes={item.attributes}
         />
     )
   })
 
+  // Change visit name
+  useEffect(() => {
+    if (currentVisit.place_name != null) {
+      setCurrentVisitName(`Visit for ${currentVisit.place_name} on ${currentVisit.datetime}`)
+    }
+  }, [currentVisit])
+
   return (
   <div className='main'>
     <h2 className='header'>Visits</h2>
-    <div className='visits-columns'>
-      <div className='review-column'>
-        <h3>To Review</h3>
-        {grid}
-      </div>
-      <div className='review-window'>
-        To add Review Window here
-      </div>
-      <div className='review-column'>
-      <h3>Reviewed</h3>
-      </div>
+    <div class="visits-columns">
+      <VisitContext.Provider value={{currentVisit, setCurrentVisit}}>
+        <div class="visit-column">
+          <h3>To Review</h3>
+          <div className='review-column'>
+            {grid}
+          </div>
+        </div>
+        <div class="visit-column">
+          <h3>{currentVisitName}</h3>
+          <div className='review-column'>
+            <div className='review-window'>
+              <VisitWindow />
+            </div>
+          </div>
+        </div>
+        <div class="visit-column">
+          <h3>Reviewed</h3>
+          <div className='review-column'>
+      
+          </div>
+        </div>
+      </VisitContext.Provider>
     </div>
   </div>
   )
