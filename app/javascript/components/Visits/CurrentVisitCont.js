@@ -4,11 +4,11 @@ const CurrentVisitCont = (props) => {
 
   return (
     <div>
-      <p>{props.object.id}</p>
-      <p>{props.object.place_name}</p>
-      <p>{props.object.place_location}</p>
-      <p>{props.object.tags}</p>
-      <p>{props.object.datetime}</p>
+      <p>{props.visit.id}</p>
+      <p>{props.visit.place_name}</p>
+      <p>{props.visit.place_location}</p>
+      <p>{props.visit.tags}</p>
+      <p>{props.visit.datetime}</p>
     </div>
   )
 }

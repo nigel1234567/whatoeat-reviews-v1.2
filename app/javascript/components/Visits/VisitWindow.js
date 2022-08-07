@@ -13,7 +13,7 @@ const VisitWindow = () => {
 
   let visit;
   if (currentVisit.id != undefined) {
-    visit = <CurrentVisitCont object={currentVisit}/>
+    visit = <CurrentVisitCont visit={currentVisit}/>
   } else {
     visit = <p>Select a visit to review.</p>
   }
