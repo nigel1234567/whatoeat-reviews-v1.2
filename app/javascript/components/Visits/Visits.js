@@ -8,6 +8,7 @@ import './Visits.css'
 
 const Visits = () => {
   const [visits, setVisits] = useState([])
+  const [visit, setVisit] = useState({})
   const [currentVisit, setCurrentVisit] = useState([])
   const [currentVisitName, setCurrentVisitName] = useState('Please select a visit!')
   const [visitFormStatus, setVisitFormStatus] = useState(false)
@@ -29,7 +30,11 @@ const Visits = () => {
   // Change visitWindow to NewVisitForm when visitFormStatus is true.
   useEffect(() => {
     if (visitFormStatus == true) {
-      setVisitWindow(<NewVisitForm />)
+      setVisitWindow(<NewVisitForm 
+                      handleChange={handleChange}
+                      handleSubmit={handleSubmit}
+                      visit={visit}
+                      />)
       console.log(`Visit window: ${visitWindow}`)
       // Reset currentVisit
       setCurrentVisit([])
@@ -53,6 +58,31 @@ const Visits = () => {
     }
     console.log("Visit Form status: " + visitFormStatus)
   }
+
+    // Handle changes in input field
+    const handleChange = (e) => {
+      e.preventDefault()
+      
+      setVisit(Object.assign({}, visit, {[e.target.name]: e.target.value}))
+      console.log('visit:', visit)
+    }
+    
+  
+    // Handle submit for form
+    const handleSubmit = (e) => {
+      e.preventDefault()
+  
+      // CSRF Token
+      const csrfToken = document.querySelector('[name=csrf-token]').content
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+  
+      // Make post request to api
+      axios.post('/api/v1/visits', {visit})
+      .then(resp => {
+        setVisit({place_name: '', place_location: '', tags: '', datetime: ''}) // Set to be empty after posting
+      })
+      .catch(resp => {})
+    }
 
   // Review Grids
   const unreviewedGrid = visits.map( item => {
@@ -81,6 +111,10 @@ const Visits = () => {
   useEffect(() => {
     if (currentVisit.place_name != null) {
       setCurrentVisitName(`Visit for ${currentVisit.place_name} on ${currentVisit.datetime}`)
+    } else if (visitFormStatus == true) {
+      setCurrentVisitName('Creating a new visit')
+    } else {
+      setCurrentVisitName('Please select a visit!')
     }
   }, [currentVisit])
 
