@@ -22,16 +22,29 @@ const Visits = () => {
     .catch( resp => console.log(resp))
   }, [visits.length]) // Only call from api when number of places (length) changes
 
-  const grid = visits.map( item => {
-    return (
-      <VisitPreview
-        key={item.attributes.id}
-        attributes={item.attributes}
-        />
-    )
+  const unreviewedGrid = visits.map( item => {
+    if (item.attributes.recommendation == null) {
+      return (
+        <VisitPreview
+          key={item.attributes.id}
+          attributes={item.attributes}
+          />
+      )
+    }
   })
 
-  // Change visit name
+  const reviewedGrid = visits.map( item => {
+    if (item.attributes.recommendation != null) {
+      return (
+        <VisitPreview
+          key={item.attributes.id}
+          attributes={item.attributes}
+          />
+      )
+    }
+  })
+
+  // Change visit window name
   useEffect(() => {
     if (currentVisit.place_name != null) {
       setCurrentVisitName(`Visit for ${currentVisit.place_name} on ${currentVisit.datetime}`)
@@ -46,7 +59,7 @@ const Visits = () => {
         <div class="visit-column">
           <h3>To Review</h3>
           <div className='review-column'>
-            {grid}
+            {unreviewedGrid}
           </div>
         </div>
         <div class="visit-column">
@@ -60,7 +73,7 @@ const Visits = () => {
         <div class="visit-column">
           <h3>Reviewed</h3>
           <div className='review-column'>
-      
+            {reviewedGrid}
           </div>
         </div>
       </VisitContext.Provider>
