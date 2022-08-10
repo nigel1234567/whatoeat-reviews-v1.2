@@ -7,8 +7,6 @@ const VisitWindow = () => {
 
   useEffect(() => {
     console.log(`Visit ID: ${currentVisit.id}`)
-
-    console.log(`Visit Attributes: ${currentVisit}`)
   }, [currentVisit])
 
   let visit;

@@ -19,8 +19,8 @@ const VisitPreview = (props) => {
     <button className='card' onClick={handleChange}>
       <div className='visit-name'>{props.attributes.place_name}</div>
       <div className='visit-location'>{props.attributes.place_location}</div>
-      <div className='visit-tags'><span className='bold'>Tags: </span>{props.attributes.tags}</div>
-      <div className='visit-datetime'><span className='bold'>Date & Time: </span>{props.attributes.datetime}</div>
+      <div className='visit-tags'><strong>Tags: </strong>{props.attributes.tags}</div>
+      <div className='visit-datetime'><strong>Date & Time: </strong>{props.attributes.datetime}</div>
     </button>
   )
 }

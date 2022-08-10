@@ -1,4 +1,4 @@
 class VisitSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :place_name, :place_location, :tags, :datetime, :user_id
+  attributes :id, :place_name, :place_location, :tags, :datetime, :user_id, :recommendation
 end
