@@ -33,7 +33,7 @@
   padding: 32px;
 }
 
-.create-visit-button {
+.visit-button {
   border: 3px solid darkorange;
   border-radius: 16px;
   background-color: orange;
@@ -42,14 +42,40 @@
   text-decoration: none;
   font-weight: bold;
   color: white;
-} 
+}
 
-.create-visit-button:hover {
+.visit-button:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.recommend {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
 }
 
 .recommend:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.recommendation {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.recommend-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
 }

@@ -133,7 +133,7 @@ const Visits = () => {
         <div class="visit-column">
           <h3>{currentVisitName}</h3>
           <div className='review-column'>
-            <button className='create-visit-button' onClick={createNewVisit}>Create New Visit</button>
+            <button className='visit-button' onClick={createNewVisit}>Create New Visit</button>
             <div className='review-window'>
               <div>{visitWindow}</div>
             </div>

@@ -36,14 +36,31 @@ const CurrentVisitCont = (props) => {
     axios.patch(`/api/v1/visits/${visit_id}`, { recommendation: 'n'})
     .then(resp => {
       window.location.reload(true)
-      console.log(resp.data.data)
     })
     .catch(resp => {})
 
   }
 
-  let recommendationStatus
+  // Delete visit
+  const deleteVisit = () => {
+        // CSRF Token
+        const csrfToken = document.querySelector('[name=csrf-token]').content
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+    
+        const visit_id = props.visit.id
+        const visit_place = props.visit.place_name
+    
+        // Make patch request to api for recommendation = 'n'
+        axios.delete(`/api/v1/visits/${visit_id}`)
+        .then(resp => {
+          alert(`You have successfully deleted the visit for ${visit_place}.`)
+          window.location.reload(true)
+        })
+        .catch(resp => {})
+  }
+
   // Rename recommendation
+  let recommendationStatus
   if (props.visit.recommendation == 'y') {
     recommendationStatus = 'Yay!'
   } else if (props.visit.recommendation == 'n') {
@@ -61,8 +78,11 @@ const CurrentVisitCont = (props) => {
         </div>
         <div className='recommendation'>
           <h3>Would you recommend {props.visit.place_name}?</h3>
-          <button type='submit' className='recommend yay' onClick={recommendYay}>Yay!</button>
-          <button type='submit' className='recommend nay' onClick={recommendNay}>Nay!</button>
+          <div className="recommend-buttons">
+            <button type='submit' className='recommend yay' onClick={recommendYay}>Yay!</button>
+            <button type='submit' className='recommend nay' onClick={recommendNay}>Nay!</button>
+          </div>
+          <button type='submit' className='visit-button' onClick={deleteVisit}>Delete Visit</button>
         </div>
       </div>
     )
@@ -78,8 +98,11 @@ const CurrentVisitCont = (props) => {
         </div>
         <div className='recommendation'>
           <h3>Would you recommend {props.visit.place_name}?</h3>
-          <button type='submit' className='recommend yay' onClick={recommendYay}>Yay!</button>
-          <button type='submit' className='recommend nay' onClick={recommendNay}>Nay!</button>
+          <div className="recommend-buttons">
+            <button type='submit' className='recommend yay' onClick={recommendYay}>Yay!</button>
+            <button type='submit' className='recommend nay' onClick={recommendNay}>Nay!</button>
+          </div>
+          <button type='submit' className='visit-button' onClick={deleteVisit}>Delete Visit</button>
         </div>
       </div>
     )
