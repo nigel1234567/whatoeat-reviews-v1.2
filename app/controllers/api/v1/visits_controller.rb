@@ -34,7 +34,7 @@ module Api
 
         # Create Place Id
         place_id = find_place(name: visit_params[:place_name]).id
-        @place ||= Place.find(params[:place_id])
+        @place ||= Place.find_by(id: place_id)
 
         @visits = Visit.all
         visit = current_user.visits.build(place_id: place_id, place_name: visit_params[:place_name], place_location: visit_params[:place_location],

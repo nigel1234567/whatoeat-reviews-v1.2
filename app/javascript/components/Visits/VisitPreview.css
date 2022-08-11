@@ -1,0 +1,9 @@
+.yay {
+  border: 3px solid darkgreen;
+  background-color: lightgreen;
+}
+
+.nay {
+  border: 3px solid darkred;
+  background-color: pink;
+}

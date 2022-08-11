@@ -40,7 +40,7 @@ const Visits = () => {
       setCurrentVisit([])
     }
 
-  },[visitFormStatus])
+  },[visitFormStatus, visit])
 
   // Change visitWindow back to VisitWindow if visit id changes and change visitFormStatus to false 
   useEffect(() => {
@@ -80,6 +80,7 @@ const Visits = () => {
       axios.post('/api/v1/visits', {visit})
       .then(resp => {
         setVisit({place_name: '', place_location: '', tags: '', datetime: ''}) // Set to be empty after posting
+        window.location.reload(true) // Refresh once created
       })
       .catch(resp => {})
     }
@@ -132,7 +133,7 @@ const Visits = () => {
         <div class="visit-column">
           <h3>{currentVisitName}</h3>
           <div className='review-column'>
-            <button onClick={createNewVisit}>Create New Visit</button>
+            <button className='create-visit-button' onClick={createNewVisit}>Create New Visit</button>
             <div className='review-window'>
               <div>{visitWindow}</div>
             </div>

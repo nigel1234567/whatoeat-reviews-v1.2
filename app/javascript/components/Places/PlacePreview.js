@@ -4,7 +4,7 @@ import './PlacePreview.css'
 
 const PlacePreview = (props) => {
   return (
-    <div className='card'>
+    <div className='place-card'>
       <div className='logo'>
         <img src={props.attributes.image_url} alt={props.attributes.name}/>
       </div>

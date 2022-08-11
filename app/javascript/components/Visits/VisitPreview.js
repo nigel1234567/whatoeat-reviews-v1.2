@@ -1,5 +1,6 @@
 import React, {useContext } from 'react'
 import { VisitContext } from './VisitContext'
+import './VisitPreview.css'
 
 const VisitPreview = (props) => {
   const {currentVisit, setCurrentVisit} = useContext(VisitContext)
@@ -33,16 +34,26 @@ const VisitPreview = (props) => {
       </button>
     )
   } else {
-    return (
-      <button className='card' onClick={handleChange}>
-        <div className='visit-name'>{props.attributes.place_name}</div>
-        <div className='visit-location'>{props.attributes.place_location}</div>
-        <div className='visit-tags'><strong>Tags: </strong>{props.attributes.tags}</div>
-        <div className='visit-datetime'><strong>Date & Time: </strong>{props.attributes.datetime}</div>
-        <div className='visit-recommendation'><strong>Recommendation: </strong>{recommendationStatus}</div>
-
-      </button>
-    )
+    if (recommendationStatus == "Yay!") {
+      return (
+        <button className='card yay' onClick={handleChange}>
+          <div className='visit-name'>{props.attributes.place_name}</div>
+          <div className='visit-location'>{props.attributes.place_location}</div>
+          <div className='visit-tags'><strong>Tags: </strong>{props.attributes.tags}</div>
+          <div className='visit-datetime'><strong>Date & Time: </strong>{props.attributes.datetime}</div>
+          <div className='visit-recommendation'><strong>Recommendation: </strong>{recommendationStatus}</div>
+        </button>
+    )} else {
+      return (
+        <button className='card nay' onClick={handleChange}>
+          <div className='visit-name'>{props.attributes.place_name}</div>
+          <div className='visit-location'>{props.attributes.place_location}</div>
+          <div className='visit-tags'><strong>Tags: </strong>{props.attributes.tags}</div>
+          <div className='visit-datetime'><strong>Date & Time: </strong>{props.attributes.datetime}</div>
+          <div className='visit-recommendation'><strong>Recommendation: </strong>{recommendationStatus}</div>
+        </button>
+      )
+    }
   }
 
 }

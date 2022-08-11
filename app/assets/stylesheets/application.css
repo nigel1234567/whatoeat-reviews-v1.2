@@ -59,6 +59,11 @@ body {
   font-weight: bold;
 }
 
+.navbar-item:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .account {
   font-size: 20px;
 }
