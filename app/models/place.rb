@@ -17,4 +17,10 @@ class Place < ApplicationRecord
   def visitors
     self.users.uniq.count
   end
+
+  def recommends
+    recommend_array = self.visits.select { |visit| visit.recommendation == 'y' }
+    recommend_array.count
+  end
+
 end
